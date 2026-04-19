@@ -13,7 +13,7 @@ import berbatovImg from "../assets/players/berbatov.jpg";
 
 const players = [
   {
-    name: "Edwin Sar",
+    name: "Van der Sar",
     team: "Man United",
     nationality: "Netherlands",
     position: "GK",
