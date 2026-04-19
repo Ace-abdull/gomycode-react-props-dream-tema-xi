@@ -1,129 +1,190 @@
-// FIFA Ultimate Team-style player card component
-function Player({ name, team, nationality, position, jerseyNumber, age, image }) {
+// Premium FIFA-style player card — rectangular with full visible photo
+function Player({
+  name,
+  team,
+  nationality,
+  position,
+  jerseyNumber,
+  age,
+  rating,
+  image,
+  captain,
+  size,
+}) {
+  const scale = size === "sm" ? 0.55 : 1;
+  const W = 300 * scale;
+  const H = 460 * scale;
+
   const cardStyle = {
-    width: "260px",
-    height: "400px",
-    borderRadius: "20px",
+    width: `${W}px`,
+    height: `${H}px`,
+    borderRadius: "18px",
     background:
-      "linear-gradient(135deg, #f5d76e 0%, #d4af37 35%, #f9e79f 55%, #b8860b 100%)",
+      "linear-gradient(150deg, #fff4b8 0%, #f5d76e 18%, #d4a017 45%, #f9e79f 65%, #b8860b 100%)",
     boxShadow:
-      "0 20px 50px -10px rgba(0,0,0,0.6), inset 0 0 30px rgba(255,255,255,0.15)",
-    padding: "18px",
-    color: "#2b1d05",
+      "0 25px 60px -15px rgba(0,0,0,0.75), 0 0 0 2px rgba(255,255,255,0.25) inset, 0 0 80px -20px rgba(245,215,110,0.6)",
+    padding: `${18 * scale}px`,
+    color: "#1a1205",
     fontFamily: "'Oswald', 'Bebas Neue', system-ui, sans-serif",
     position: "relative",
     overflow: "hidden",
-    transition: "transform 0.4s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.4s",
+    transition: "transform 0.45s cubic-bezier(0.2,0.8,0.2,1), box-shadow 0.45s",
     cursor: "pointer",
+    display: "flex",
+    flexDirection: "column",
+  };
+
+  const shineStyle = {
+    position: "absolute",
+    top: 0,
+    left: "-50%",
+    width: "60%",
+    height: "100%",
+    background:
+      "linear-gradient(115deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%)",
+    transform: "skewX(-20deg)",
+    pointerEvents: "none",
+  };
+
+  const captainBadge = {
+    position: "absolute",
+    top: `${12 * scale}px`,
+    right: `${12 * scale}px`,
+    width: `${32 * scale}px`,
+    height: `${32 * scale}px`,
+    borderRadius: "50%",
+    background: "linear-gradient(135deg, #ffd700, #ff8c00)",
+    color: "#1a1205",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    fontWeight: 900,
+    fontSize: `${16 * scale}px`,
+    boxShadow: "0 4px 12px rgba(0,0,0,0.4), inset 0 0 8px rgba(255,255,255,0.5)",
+    border: "2px solid rgba(255,255,255,0.6)",
+    zIndex: 3,
   };
 
   const topRowStyle = {
     display: "flex",
-    justifyContent: "space-between",
+    flexDirection: "column",
     alignItems: "flex-start",
-    paddingBottom: "8px",
+    paddingLeft: `${4 * scale}px`,
+    zIndex: 2,
   };
 
   const ratingStyle = {
-    fontSize: "44px",
-    fontWeight: 800,
-    lineHeight: 1,
-    letterSpacing: "-1px",
-    textShadow: "0 2px 4px rgba(0,0,0,0.25)",
+    fontSize: `${56 * scale}px`,
+    fontWeight: 900,
+    lineHeight: 0.9,
+    letterSpacing: "-2px",
+    textShadow: "0 3px 6px rgba(0,0,0,0.3)",
   };
 
   const positionStyle = {
-    fontSize: "16px",
-    fontWeight: 700,
-    marginTop: "4px",
-    letterSpacing: "1px",
-  };
-
-  const numberStyle = {
-    fontSize: "14px",
-    fontWeight: 700,
-    background: "rgba(43,29,5,0.15)",
-    padding: "4px 10px",
-    borderRadius: "999px",
+    fontSize: `${20 * scale}px`,
+    fontWeight: 800,
+    marginTop: `${2 * scale}px`,
+    letterSpacing: "2px",
   };
 
   const imageWrapStyle = {
-    width: "150px",
-    height: "150px",
-    margin: "4px auto 8px",
-    borderRadius: "50%",
+    position: "absolute",
+    right: `${10 * scale}px`,
+    top: `${20 * scale}px`,
+    width: `${180 * scale}px`,
+    height: `${230 * scale}px`,
     overflow: "hidden",
-    border: "3px solid rgba(43,29,5,0.4)",
-    boxShadow: "0 6px 18px rgba(0,0,0,0.35)",
-    background: "rgba(255,255,255,0.2)",
+    zIndex: 1,
+    filter: "drop-shadow(0 10px 15px rgba(0,0,0,0.4))",
   };
 
   const imgStyle = {
     width: "100%",
     height: "100%",
     objectFit: "cover",
-    objectPosition: "top center",
+    objectPosition: "center top",
+  };
+
+  const nameWrapStyle = {
+    marginTop: "auto",
+    textAlign: "center",
+    borderTop: "2px solid rgba(26,18,5,0.4)",
+    paddingTop: `${10 * scale}px`,
+    zIndex: 2,
   };
 
   const nameStyle = {
-    textAlign: "center",
-    fontSize: "18px",
-    fontWeight: 800,
+    fontSize: `${22 * scale}px`,
+    fontWeight: 900,
     textTransform: "uppercase",
-    letterSpacing: "1px",
-    margin: "6px 0 8px",
+    letterSpacing: "1.5px",
+    margin: 0,
     lineHeight: 1.1,
-    minHeight: "40px",
   };
 
   const dividerStyle = {
     height: "1px",
-    background: "rgba(43,29,5,0.3)",
-    margin: "6px 0",
+    background: "rgba(26,18,5,0.35)",
+    margin: `${8 * scale}px 0`,
   };
 
   const statsRowStyle = {
     display: "grid",
-    gridTemplateColumns: "1fr 1fr",
-    gap: "4px 12px",
-    fontSize: "12px",
-    fontWeight: 600,
+    gridTemplateColumns: "repeat(3, 1fr)",
+    gap: `${4 * scale}px`,
+    fontSize: `${11 * scale}px`,
+    fontWeight: 700,
     textTransform: "uppercase",
+    textAlign: "center",
   };
 
-  const statValueStyle = { fontWeight: 800, textAlign: "right" };
+  const statItem = { display: "flex", flexDirection: "column", gap: "2px" };
+  const statLabel = { opacity: 0.7, fontSize: `${9 * scale}px`, letterSpacing: "1px" };
+  const statValue = { fontWeight: 900, fontSize: `${12 * scale}px` };
 
   return (
     <div
       style={cardStyle}
       onMouseEnter={(e) => {
-        e.currentTarget.style.transform = "translateY(-8px) scale(1.03)";
+        e.currentTarget.style.transform = "translateY(-12px) scale(1.04) rotateZ(-1deg)";
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.transform = "translateY(0) scale(1)";
+        e.currentTarget.style.transform = "translateY(0) scale(1) rotateZ(0)";
       }}
     >
+      <div style={shineStyle} />
+      {captain && <div style={captainBadge} title="Captain">C</div>}
+
       <div style={topRowStyle}>
-        <div>
-          <div style={ratingStyle}>{Math.min(99, 80 + (jerseyNumber % 19))}</div>
-          <div style={positionStyle}>{position}</div>
+        <div style={ratingStyle}>{rating}</div>
+        <div style={positionStyle}>{position}</div>
+        <div style={{ fontSize: `${14 * scale}px`, fontWeight: 700, marginTop: `${4 * scale}px`, opacity: 0.85 }}>
+          #{jerseyNumber}
         </div>
-        <div style={numberStyle}>#{jerseyNumber}</div>
       </div>
 
       <div style={imageWrapStyle}>
         <img src={image} alt={name} style={imgStyle} loading="lazy" />
       </div>
 
-      <div style={nameStyle}>{name}</div>
-      <div style={dividerStyle} />
-      <div style={statsRowStyle}>
-        <span>Club</span>
-        <span style={statValueStyle}>{team}</span>
-        <span>Nation</span>
-        <span style={statValueStyle}>{nationality}</span>
-        <span>Age</span>
-        <span style={statValueStyle}>{age}</span>
+      <div style={nameWrapStyle}>
+        <h3 style={nameStyle}>{name}</h3>
+        <div style={dividerStyle} />
+        <div style={statsRowStyle}>
+          <div style={statItem}>
+            <span style={statLabel}>Club</span>
+            <span style={statValue}>{team}</span>
+          </div>
+          <div style={statItem}>
+            <span style={statLabel}>Nation</span>
+            <span style={statValue}>{nationality}</span>
+          </div>
+          <div style={statItem}>
+            <span style={statLabel}>Age</span>
+            <span style={statValue}>{age}</span>
+          </div>
+        </div>
       </div>
     </div>
   );
@@ -136,7 +197,10 @@ Player.defaultProps = {
   position: "ST",
   jerseyNumber: 0,
   age: 0,
-  image: "https://via.placeholder.com/200x200?text=Player",
+  rating: 75,
+  image: "https://via.placeholder.com/300x460?text=Player",
+  captain: false,
+  size: "lg",
 };
 
 export default Player;
