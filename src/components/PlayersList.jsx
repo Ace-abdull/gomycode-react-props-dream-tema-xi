@@ -217,9 +217,9 @@ function PlayersList() {
       <style>{`
         @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes slideUp { from { transform: translateY(40px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
-        @keyframes pulseRing { 0%, 100% { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 0 3px rgba(0,0,0,0.4), 0 0 0 0 rgba(255,140,0,0.7); } 50% { box-shadow: 0 6px 20px rgba(0,0,0,0.6), 0 0 0 3px rgba(0,0,0,0.4), 0 0 0 10px rgba(255,140,0,0); } }
-        .player-token:hover { transform: translate(-50%, -50%) scale(1.18) !important; z-index: 10; }
-        .player-token.captain .portrait { animation: pulseRing 2s infinite; border-color: #ff8c00 !important; }
+        @keyframes pulseRing { 0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 0 rgba(255,140,0,0.7); } 50% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 8px rgba(255,140,0,0); } }
+        .player-token:hover { transform: translate(-50%, -50%) scale(1.15) !important; z-index: 10; }
+        .player-token.captain .mini-card { animation: pulseRing 2s infinite; border-color: #ff8c00 !important; }
       `}</style>
 
       <header style={headerStyle}>
@@ -242,12 +242,15 @@ function PlayersList() {
               style={tokenStyle(p.x, p.y)}
               onClick={() => setSelected(p)}
             >
-              <div className="portrait" style={{ position: "relative", ...portraitStyle }}>
-                <img src={p.image} alt={p.name} style={portraitImg} />
-                <div style={numBadge}>{p.jerseyNumber}</div>
+              <div className="mini-card" style={miniCardStyle}>
+                <div style={miniRating}>{p.rating}</div>
+                <div style={miniPos}>{p.position}</div>
                 {p.captain && <div style={captainTag}>C</div>}
+                <div style={miniImgWrap}>
+                  <img src={p.image} alt={p.name} style={miniImg} loading="lazy" />
+                </div>
+                <div style={miniNameBar}>{shortName(p.name)}</div>
               </div>
-              <div style={nameTagStyle}>{shortName(p.name)}</div>
             </div>
           ))}
         </div>
