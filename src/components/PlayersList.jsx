@@ -60,36 +60,36 @@ function PlayersList() {
   });
 
   const pitchWrapStyle = {
-    maxWidth: "900px",
+    maxWidth: "640px",
     margin: "0 auto",
-    aspectRatio: "2 / 3",
+    aspectRatio: "3 / 4",
     position: "relative",
     background:
-      "repeating-linear-gradient(0deg, #0a6b2e 0px, #0a6b2e 60px, #0d7a35 60px, #0d7a35 120px)",
+      "repeating-linear-gradient(0deg, #0a6b2e 0px, #0a6b2e 50px, #0d7a35 50px, #0d7a35 100px)",
     borderRadius: "16px",
     overflow: "hidden",
-    boxShadow: "0 30px 80px rgba(0,0,0,0.7), inset 0 0 100px rgba(0,0,0,0.4)",
+    boxShadow: "0 30px 80px rgba(0,0,0,0.7), inset 0 0 100px rgba(0,0,0,0.5)",
     border: "3px solid rgba(255,255,255,0.15)",
   };
 
   const PitchLines = () => (
     <svg
-      viewBox="0 0 100 150"
+      viewBox="0 0 100 133"
       preserveAspectRatio="none"
       style={{ position: "absolute", inset: 0, width: "100%", height: "100%", pointerEvents: "none" }}
     >
-      <rect x="2" y="2" width="96" height="146" fill="none" stroke="white" strokeWidth="0.4" opacity="0.85" />
-      <line x1="2" y1="75" x2="98" y2="75" stroke="white" strokeWidth="0.3" opacity="0.85" />
-      <circle cx="50" cy="75" r="9" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
-      <circle cx="50" cy="75" r="0.6" fill="white" opacity="0.85" />
-      <rect x="22" y="2" width="56" height="18" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
-      <rect x="35" y="2" width="30" height="7" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
-      <circle cx="50" cy="14" r="0.6" fill="white" opacity="0.85" />
-      <path d="M 42 20 A 8 8 0 0 0 58 20" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
-      <rect x="22" y="130" width="56" height="18" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
-      <rect x="35" y="141" width="30" height="7" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
-      <circle cx="50" cy="136" r="0.6" fill="white" opacity="0.85" />
-      <path d="M 42 130 A 8 8 0 0 1 58 130" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <rect x="2" y="2" width="96" height="129" fill="none" stroke="white" strokeWidth="0.4" opacity="0.85" />
+      <line x1="2" y1="66.5" x2="98" y2="66.5" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <circle cx="50" cy="66.5" r="9" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <circle cx="50" cy="66.5" r="0.6" fill="white" opacity="0.85" />
+      <rect x="22" y="2" width="56" height="16" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <rect x="35" y="2" width="30" height="6" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <circle cx="50" cy="12" r="0.6" fill="white" opacity="0.85" />
+      <path d="M 42 18 A 8 8 0 0 0 58 18" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <rect x="22" y="115" width="56" height="16" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <rect x="35" y="125" width="30" height="6" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
+      <circle cx="50" cy="121" r="0.6" fill="white" opacity="0.85" />
+      <path d="M 42 115 A 8 8 0 0 1 58 115" fill="none" stroke="white" strokeWidth="0.3" opacity="0.85" />
     </svg>
   );
 
@@ -106,66 +106,82 @@ function PlayersList() {
     zIndex: 2,
   });
 
-  const portraitStyle = {
-    width: "72px",
-    height: "72px",
-    borderRadius: "50%",
+  const miniCardStyle = {
+    width: "78px",
+    height: "104px",
+    borderRadius: "8px",
+    background: "linear-gradient(155deg, #fff4b8 0%, #f5d76e 30%, #d4a017 70%, #b8860b 100%)",
+    border: "2px solid rgba(26,18,5,0.5)",
+    boxShadow: "0 6px 16px rgba(0,0,0,0.6), inset 0 0 8px rgba(255,255,255,0.3)",
     overflow: "hidden",
-    border: "3px solid #f5d76e",
-    boxShadow: "0 6px 20px rgba(0,0,0,0.6), 0 0 0 3px rgba(0,0,0,0.4)",
-    background: "#1a1205",
-  };
-
-  const portraitImg = { width: "100%", height: "100%", objectFit: "cover", objectPosition: "center top" };
-
-  const nameTagStyle = {
-    marginTop: "6px",
-    background: "rgba(0,0,0,0.85)",
-    color: "#f5d76e",
-    padding: "3px 10px",
-    borderRadius: "4px",
-    fontSize: "11px",
-    fontWeight: 800,
-    letterSpacing: "1px",
-    textTransform: "uppercase",
-    whiteSpace: "nowrap",
-    border: "1px solid rgba(245,215,110,0.4)",
-  };
-
-  const numBadge = {
-    position: "absolute",
-    top: "-6px",
-    right: "-6px",
-    width: "24px",
-    height: "24px",
-    borderRadius: "50%",
-    background: "linear-gradient(135deg, #f5d76e, #b8860b)",
-    color: "#1a1205",
-    fontSize: "11px",
-    fontWeight: 900,
+    position: "relative",
     display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    border: "2px solid #000",
-    boxShadow: "0 2px 6px rgba(0,0,0,0.6)",
+    flexDirection: "column",
   };
 
+  const miniImgWrap = { flex: 1, overflow: "hidden", position: "relative" };
+  const miniImg = {
+    width: "100%",
+    height: "100%",
+    objectFit: "cover",
+    objectPosition: "center 15%",
+    display: "block",
+  };
+  const miniRating = {
+    position: "absolute",
+    top: "3px",
+    left: "5px",
+    fontFamily: "'Oswald', sans-serif",
+    fontSize: "16px",
+    fontWeight: 900,
+    color: "#1a1205",
+    lineHeight: 1,
+    textShadow: "0 1px 2px rgba(255,255,255,0.5)",
+    zIndex: 2,
+  };
+  const miniPos = {
+    position: "absolute",
+    top: "21px",
+    left: "5px",
+    fontFamily: "'Oswald', sans-serif",
+    fontSize: "9px",
+    fontWeight: 800,
+    color: "#1a1205",
+    letterSpacing: "0.5px",
+    zIndex: 2,
+  };
+  const miniNameBar = {
+    background: "rgba(26,18,5,0.9)",
+    color: "#f5d76e",
+    fontFamily: "'Oswald', sans-serif",
+    fontSize: "9px",
+    fontWeight: 800,
+    letterSpacing: "0.5px",
+    textTransform: "uppercase",
+    textAlign: "center",
+    padding: "3px 2px",
+    whiteSpace: "nowrap",
+    overflow: "hidden",
+    textOverflow: "ellipsis",
+  };
   const captainTag = {
     position: "absolute",
-    top: "-6px",
-    left: "-6px",
-    width: "22px",
-    height: "22px",
+    top: "3px",
+    right: "3px",
+    width: "18px",
+    height: "18px",
     borderRadius: "50%",
     background: "linear-gradient(135deg, #ffd700, #ff6b00)",
     color: "#1a1205",
-    fontSize: "11px",
+    fontSize: "10px",
     fontWeight: 900,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    border: "2px solid #fff",
-    boxShadow: "0 2px 8px rgba(255,140,0,0.6)",
+    border: "1.5px solid #fff",
+    boxShadow: "0 2px 6px rgba(255,140,0,0.7)",
+    zIndex: 3,
+    fontFamily: "'Oswald', sans-serif",
   };
 
   const modalBackdrop = {
