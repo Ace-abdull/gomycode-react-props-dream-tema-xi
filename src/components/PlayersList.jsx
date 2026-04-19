@@ -69,9 +69,10 @@ function PlayersList() {
     background:
       "repeating-linear-gradient(0deg, #0a6b2e 0px, #0a6b2e 50px, #0d7a35 50px, #0d7a35 100px)",
     borderRadius: "16px",
-    overflow: "hidden",
+    overflow: "visible",
     boxShadow: "0 30px 80px rgba(0,0,0,0.7), inset 0 0 100px rgba(0,0,0,0.5)",
     border: "3px solid rgba(255,255,255,0.15)",
+    isolation: "isolate",
   };
 
   const PitchLines = () => (
