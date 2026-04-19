@@ -1,16 +1,28 @@
-// FIFA Ultimate XI — first two names only, all 99 rated
+// FIFA Ultimate XI — first two names only, all 99 rated, ES6 image imports
+import vanDerSarImg from "../assets/players/van_der_sar.jpg";
+import robertoCarlosImg from "../assets/players/roberto_carlos.jpg";
+import cannavaroImg from "../assets/players/cannavaro.jpg";
+import maldiniImg from "../assets/players/maldini.jpg";
+import marceloImg from "../assets/players/marcelo.jpg";
+import keaneImg from "../assets/players/roy_keane.jpg";
+import kakaImg from "../assets/players/kaka.jpg";
+import ozilImg from "../assets/players/ozil.webp";
+import cr7Img from "../assets/players/cr7.jpg";
+import messiImg from "../assets/players/messi.jpg";
+import berbatovImg from "../assets/players/berbatov.jpg";
+
 const players = [
   {
-    name: "Edwin van der Sar",
-    team: "Manchester United",
+    name: "Edwin Sar",
+    team: "Man United",
     nationality: "Netherlands",
     position: "GK",
     jerseyNumber: 1,
     age: 40,
     rating: 99,
-    image: "/players/van_der_sar.jpg",
+    image: vanDerSarImg,
     captain: false,
-    x: 50, y: 90, // pitch position %
+    x: 50, y: 88,
   },
   {
     name: "Roberto Carlos",
@@ -20,9 +32,9 @@ const players = [
     jerseyNumber: 6,
     age: 25,
     rating: 99,
-    image: "/players/roberto_carlos.jpg",
+    image: robertoCarlosImg,
     captain: false,
-    x: 85, y: 72,
+    x: 82, y: 70,
   },
   {
     name: "Fabio Cannavaro",
@@ -32,9 +44,9 @@ const players = [
     jerseyNumber: 5,
     age: 33,
     rating: 99,
-    image: "/players/cannavaro.jpg",
+    image: cannavaroImg,
     captain: false,
-    x: 62, y: 75,
+    x: 60, y: 73,
   },
   {
     name: "Paolo Maldini",
@@ -44,21 +56,21 @@ const players = [
     jerseyNumber: 3,
     age: 35,
     rating: 99,
-    image: "/players/maldini.jpg",
+    image: maldiniImg,
     captain: true,
-    x: 38, y: 75,
+    x: 40, y: 73,
   },
   {
-    name: "Marcelo Vieira",
+    name: "Marcelo",
     team: "Real Madrid",
     nationality: "Brazil",
     position: "LB",
     jerseyNumber: 12,
     age: 30,
     rating: 99,
-    image: "/players/marcelo.jpg",
+    image: marceloImg,
     captain: false,
-    x: 15, y: 72,
+    x: 18, y: 70,
   },
   {
     name: "Roy Keane",
@@ -68,9 +80,9 @@ const players = [
     jerseyNumber: 16,
     age: 32,
     rating: 99,
-    image: "/players/roy_keane.jpg",
+    image: keaneImg,
     captain: false,
-    x: 50, y: 55,
+    x: 50, y: 53,
   },
   {
     name: "Ricardo Kaká",
@@ -80,9 +92,9 @@ const players = [
     jerseyNumber: 22,
     age: 25,
     rating: 99,
-    image: "/players/kaka.jpg",
+    image: kakaImg,
     captain: false,
-    x: 75, y: 48,
+    x: 72, y: 45,
   },
   {
     name: "Mesut Özil",
@@ -92,9 +104,9 @@ const players = [
     jerseyNumber: 10,
     age: 27,
     rating: 99,
-    image: "/players/ozil.webp",
+    image: ozilImg,
     captain: false,
-    x: 25, y: 48,
+    x: 28, y: 45,
   },
   {
     name: "Cristiano Ronaldo",
@@ -104,9 +116,9 @@ const players = [
     jerseyNumber: 7,
     age: 23,
     rating: 99,
-    image: "/players/cr7.jpg",
+    image: cr7Img,
     captain: false,
-    x: 80, y: 22,
+    x: 78, y: 22,
   },
   {
     name: "Lionel Messi",
@@ -116,9 +128,9 @@ const players = [
     jerseyNumber: 10,
     age: 24,
     rating: 99,
-    image: "/players/messi.jpg",
+    image: messiImg,
     captain: false,
-    x: 20, y: 22,
+    x: 22, y: 22,
   },
   {
     name: "Dimitar Berbatov",
@@ -128,9 +140,9 @@ const players = [
     jerseyNumber: 9,
     age: 29,
     rating: 99,
-    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/Dimitar_Berbatov_2012.jpg/640px-Dimitar_Berbatov_2012.jpg",
+    image: berbatovImg,
     captain: false,
-    x: 50, y: 14,
+    x: 50, y: 12,
   },
 ];
 
