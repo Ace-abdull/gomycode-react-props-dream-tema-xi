@@ -1,9 +1,11 @@
 import { useState } from "react";
 import Player from "./Player";
 import players from "./players";
+import mourinhoImg from "../assets/players/mourinho.jpg";
 
 function PlayersList() {
   const [selected, setSelected] = useState(null);
+  const [hovered, setHovered] = useState(null);
   const [view, setView] = useState("pitch");
 
   const wrapStyle = {
@@ -227,6 +229,24 @@ function PlayersList() {
         <h1 style={titleStyle}>My Starting XI</h1>
       </header>
 
+      {/* Coach badge */}
+      <div style={{
+        display: "flex", justifyContent: "center", alignItems: "center", gap: "14px",
+        marginBottom: "28px", padding: "10px 20px", maxWidth: "fit-content",
+        marginLeft: "auto", marginRight: "auto",
+        background: "linear-gradient(135deg, rgba(245,215,110,0.12), rgba(184,134,11,0.05))",
+        border: "1px solid rgba(245,215,110,0.3)", borderRadius: "999px",
+        backdropFilter: "blur(8px)",
+      }}>
+        <img src={mourinhoImg} alt="José Mourinho"
+          style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "cover", objectPosition: "center 20%", border: "2px solid #f5d76e" }}
+        />
+        <div style={{ textAlign: "left" }}>
+          <div style={{ fontSize: "9px", letterSpacing: "3px", color: "#f9e79f", opacity: 0.7, textTransform: "uppercase" }}>Manager</div>
+          <div style={{ fontSize: "15px", fontWeight: 800, color: "#f5d76e", letterSpacing: "1.5px", textTransform: "uppercase" }}>José Mourinho</div>
+        </div>
+      </div>
+
       <div style={toggleWrap}>
         <button style={tabBtn(view === "pitch")} onClick={() => setView("pitch")}>Formation</button>
         <button style={tabBtn(view === "cards")} onClick={() => setView("cards")}>Cards</button>
@@ -241,8 +261,16 @@ function PlayersList() {
               className={`player-token ${p.captain ? "captain" : ""}`}
               style={tokenStyle(p.x, p.y)}
               onClick={() => setSelected(p)}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered(null)}
             >
-              <div className="mini-card" style={miniCardStyle}>
+              <div className="mini-card" style={{
+                ...miniCardStyle,
+                boxShadow: hovered === i
+                  ? "0 10px 24px rgba(0,0,0,0.7), inset 0 0 12px rgba(255,255,255,0.5), 0 0 20px rgba(245,215,110,0.6)"
+                  : miniCardStyle.boxShadow,
+                borderColor: hovered === i ? "#fff4b8" : miniCardStyle.border,
+              }}>
                 <div style={miniRating}>{p.rating}</div>
                 <div style={miniPos}>{p.position}</div>
                 {p.captain && <div style={captainTag}>C</div>}
@@ -251,6 +279,24 @@ function PlayersList() {
                 </div>
                 <div style={miniNameBar}>{shortName(p.name)}</div>
               </div>
+
+              {/* Hover preview — full card */}
+              {hovered === i && (
+                <div style={{
+                  position: "absolute",
+                  left: p.x > 60 ? "auto" : "100%",
+                  right: p.x > 60 ? "100%" : "auto",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  marginLeft: p.x > 60 ? 0 : "12px",
+                  marginRight: p.x > 60 ? "12px" : 0,
+                  zIndex: 20,
+                  pointerEvents: "none",
+                  animation: "fadeIn 0.2s ease",
+                }}>
+                  <Player {...p} size="sm" />
+                </div>
+              )}
             </div>
           ))}
         </div>
