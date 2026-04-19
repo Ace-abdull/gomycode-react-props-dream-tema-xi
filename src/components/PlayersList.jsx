@@ -69,9 +69,10 @@ function PlayersList() {
     background:
       "repeating-linear-gradient(0deg, #0a6b2e 0px, #0a6b2e 50px, #0d7a35 50px, #0d7a35 100px)",
     borderRadius: "16px",
-    overflow: "hidden",
+    overflow: "visible",
     boxShadow: "0 30px 80px rgba(0,0,0,0.7), inset 0 0 100px rgba(0,0,0,0.5)",
     border: "3px solid rgba(255,255,255,0.15)",
+    isolation: "isolate",
   };
 
   const PitchLines = () => (
@@ -134,23 +135,27 @@ function PlayersList() {
     top: "3px",
     left: "5px",
     fontFamily: "'Oswald', sans-serif",
-    fontSize: "16px",
+    fontSize: "17px",
     fontWeight: 900,
     color: "#1a1205",
     lineHeight: 1,
-    textShadow: "0 1px 2px rgba(255,255,255,0.5)",
+    textShadow: "0 1px 2px rgba(255,255,255,0.6)",
     zIndex: 2,
   };
   const miniPos = {
     position: "absolute",
-    top: "21px",
+    top: "23px",
     left: "5px",
     fontFamily: "'Oswald', sans-serif",
     fontSize: "9px",
-    fontWeight: 800,
+    fontWeight: 900,
     color: "#1a1205",
+    background: "rgba(255,244,184,0.95)",
+    padding: "1px 5px",
+    borderRadius: "3px",
     letterSpacing: "0.5px",
     zIndex: 2,
+    boxShadow: "0 1px 2px rgba(0,0,0,0.4)",
   };
   const miniNameBar = {
     background: "rgba(26,18,5,0.9)",
@@ -220,8 +225,10 @@ function PlayersList() {
         @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes slideUp { from { transform: translateY(40px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
         @keyframes pulseRing { 0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 0 rgba(255,140,0,0.7); } 50% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 8px rgba(255,140,0,0); } }
-        .player-token:hover { transform: translate(-50%, -50%) scale(1.15) !important; z-index: 10; }
+        .player-token:hover { transform: translate(-50%, -50%) scale(1.15) !important; z-index: 30; }
         .player-token.captain .mini-card { animation: pulseRing 2s infinite; border-color: #ff8c00 !important; }
+        .pitch-area.has-hover .player-token:not(.is-hovered) { opacity: 0.25; filter: blur(1px); }
+        .pitch-area .player-token { transition: opacity 0.2s, filter 0.2s, transform 0.3s; }
       `}</style>
 
       <header style={headerStyle}>
@@ -229,76 +236,83 @@ function PlayersList() {
         <h1 style={titleStyle}>My Starting XI</h1>
       </header>
 
-      {/* Coach badge */}
-      <div style={{
-        display: "flex", justifyContent: "center", alignItems: "center", gap: "14px",
-        marginBottom: "28px", padding: "10px 20px", maxWidth: "fit-content",
-        marginLeft: "auto", marginRight: "auto",
-        background: "linear-gradient(135deg, rgba(245,215,110,0.12), rgba(184,134,11,0.05))",
-        border: "1px solid rgba(245,215,110,0.3)", borderRadius: "999px",
-        backdropFilter: "blur(8px)",
-      }}>
-        <img src={mourinhoImg} alt="José Mourinho"
-          style={{ width: "44px", height: "44px", borderRadius: "50%", objectFit: "cover", objectPosition: "center 20%", border: "2px solid #f5d76e" }}
-        />
-        <div style={{ textAlign: "left" }}>
-          <div style={{ fontSize: "9px", letterSpacing: "3px", color: "#f9e79f", opacity: 0.7, textTransform: "uppercase" }}>Manager</div>
-          <div style={{ fontSize: "15px", fontWeight: 800, color: "#f5d76e", letterSpacing: "1.5px", textTransform: "uppercase" }}>José Mourinho</div>
-        </div>
-      </div>
-
       <div style={toggleWrap}>
         <button style={tabBtn(view === "pitch")} onClick={() => setView("pitch")}>Formation</button>
         <button style={tabBtn(view === "cards")} onClick={() => setView("cards")}>Cards</button>
       </div>
 
       {view === "pitch" ? (
-        <div style={pitchWrapStyle}>
-          <PitchLines />
-          {players.map((p, i) => (
-            <div
-              key={i}
-              className={`player-token ${p.captain ? "captain" : ""}`}
-              style={tokenStyle(p.x, p.y)}
-              onClick={() => setSelected(p)}
-              onMouseEnter={() => setHovered(i)}
-              onMouseLeave={() => setHovered(null)}
-            >
-              <div className="mini-card" style={{
-                ...miniCardStyle,
-                boxShadow: hovered === i
-                  ? "0 10px 24px rgba(0,0,0,0.7), inset 0 0 12px rgba(255,255,255,0.5), 0 0 20px rgba(245,215,110,0.6)"
-                  : miniCardStyle.boxShadow,
-                borderColor: hovered === i ? "#fff4b8" : miniCardStyle.border,
-              }}>
-                <div style={miniRating}>{p.rating}</div>
-                <div style={miniPos}>{p.position}</div>
-                {p.captain && <div style={captainTag}>C</div>}
-                <div style={miniImgWrap}>
-                  <img src={p.image} alt={p.name} style={miniImg} loading="lazy" />
-                </div>
-                <div style={miniNameBar}>{shortName(p.name)}</div>
-              </div>
+        <div style={{
+          display: "flex", gap: "32px", justifyContent: "center", alignItems: "flex-start",
+          flexWrap: "wrap", maxWidth: "1100px", margin: "0 auto",
+        }}>
+          <div className={`pitch-area ${hovered !== null ? "has-hover" : ""}`} style={{ ...pitchWrapStyle, flex: "0 1 640px" }}>
+            <PitchLines />
+            {players.map((p, i) => {
+              const isHovered = hovered === i;
+              // smart placement: top players → preview below; sides → opposite side
+              const placeBelow = p.y < 30;
+              const placeRight = p.x < 50;
+              return (
+                <div
+                  key={i}
+                  className={`player-token ${p.captain ? "captain" : ""} ${isHovered ? "is-hovered" : ""}`}
+                  style={tokenStyle(p.x, p.y)}
+                  onClick={() => setSelected(p)}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                >
+                  <div className="mini-card" style={{
+                    ...miniCardStyle,
+                    boxShadow: isHovered
+                      ? "0 10px 24px rgba(0,0,0,0.7), inset 0 0 12px rgba(255,255,255,0.5), 0 0 24px rgba(245,215,110,0.7)"
+                      : miniCardStyle.boxShadow,
+                  }}>
+                    <div style={miniRating}>{p.rating}</div>
+                    <div style={miniPos}>{p.position}</div>
+                    {p.captain && <div style={captainTag}>C</div>}
+                    <div style={miniImgWrap}>
+                      <img src={p.image} alt={p.name} style={miniImg} loading="lazy" />
+                    </div>
+                    <div style={miniNameBar}>{shortName(p.name)}</div>
+                  </div>
 
-              {/* Hover preview — full card */}
-              {hovered === i && (
-                <div style={{
-                  position: "absolute",
-                  left: p.x > 60 ? "auto" : "100%",
-                  right: p.x > 60 ? "100%" : "auto",
-                  top: "50%",
-                  transform: "translateY(-50%)",
-                  marginLeft: p.x > 60 ? 0 : "12px",
-                  marginRight: p.x > 60 ? "12px" : 0,
-                  zIndex: 20,
-                  pointerEvents: "none",
-                  animation: "fadeIn 0.2s ease",
-                }}>
-                  <Player {...p} size="sm" />
+                  {isHovered && (
+                    <div style={{
+                      position: "absolute",
+                      ...(placeBelow
+                        ? { top: "100%", left: "50%", transform: "translateX(-50%)", marginTop: "14px" }
+                        : placeRight
+                          ? { left: "100%", top: "50%", transform: "translateY(-50%)", marginLeft: "14px" }
+                          : { right: "100%", top: "50%", transform: "translateY(-50%)", marginRight: "14px" }),
+                      zIndex: 50,
+                      pointerEvents: "none",
+                      animation: "fadeIn 0.2s ease",
+                    }}>
+                      <Player {...p} size="sm" />
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          ))}
+              );
+            })}
+          </div>
+
+          {/* Coach card — sits beside the pitch */}
+          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+            <div style={{ fontSize: "10px", letterSpacing: "4px", color: "#f9e79f", opacity: 0.7, textTransform: "uppercase" }}>Manager</div>
+            <Player
+              name="José Mourinho"
+              team="Man United"
+              nationality="Portugal"
+              position="MGR"
+              jerseyNumber={1}
+              age={61}
+              rating={99}
+              image={mourinhoImg}
+              captain={false}
+              size="sm"
+            />
+          </div>
         </div>
       ) : (
         <div style={gridStyle}>
@@ -307,6 +321,19 @@ function PlayersList() {
               <Player {...p} />
             </div>
           ))}
+          <div style={{ animation: `slideUp 0.5s ease ${players.length * 0.05}s both` }}>
+            <Player
+              name="José Mourinho"
+              team="Man United"
+              nationality="Portugal"
+              position="MGR"
+              jerseyNumber={1}
+              age={61}
+              rating={99}
+              image={mourinhoImg}
+              captain={false}
+            />
+          </div>
         </div>
       )}
 
