@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-// @ts-expect-error - JS component
-import PlayersList from "../components/PlayersList.js";
+// @ts-expect-error - JSX component
+import PlayersList from "../components/PlayersList.jsx";
 
 export const Route = createFileRoute("/")({
   head: () => ({
