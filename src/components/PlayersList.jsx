@@ -306,23 +306,32 @@ function PlayersList() {
             })}
           </div>
 
-          {/* Coach mini-card — matches the formation tokens */}
-          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", paddingTop: "8px" }}>
-            <div style={{ fontSize: "10px", letterSpacing: "4px", color: "#f9e79f", opacity: 0.7, textTransform: "uppercase" }}>Manager</div>
+          {/* Coach mini-card — same design, scaled up so it doesn't look lost beside the pitch */}
+          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "16px", paddingTop: "20px" }}>
+            <div style={{ fontSize: "11px", letterSpacing: "5px", color: "#f9e79f", opacity: 0.75, textTransform: "uppercase" }}>Manager</div>
             <div
-              className="player-token"
               style={{ position: "relative", cursor: "pointer" }}
               onClick={() => setSelected(MANAGER)}
               onMouseEnter={() => setHovered("mgr")}
               onMouseLeave={() => setHovered(null)}
             >
-              <div className="mini-card" style={miniCardStyle}>
-                <div style={miniRating}>{MANAGER.rating}</div>
+              <div style={{
+                ...miniCardStyle,
+                width: "140px",
+                height: "186px",
+                borderRadius: "12px",
+                transition: "transform 0.3s, box-shadow 0.3s",
+                transform: hovered === "mgr" ? "scale(1.05)" : "scale(1)",
+                boxShadow: hovered === "mgr"
+                  ? "0 14px 32px rgba(0,0,0,0.7), inset 0 0 14px rgba(255,255,255,0.5), 0 0 30px rgba(245,215,110,0.7)"
+                  : miniCardStyle.boxShadow,
+              }}>
+                <div style={{ ...miniRating, fontSize: "30px", top: "8px", left: "10px" }}>{MANAGER.rating}</div>
                 <div style={miniImgWrap}>
                   <img src={MANAGER.image} alt={MANAGER.name} style={miniImg} loading="lazy" />
                 </div>
-                <div style={miniPos}>{MANAGER.position}</div>
-                <div style={miniNameBar}>{shortName(MANAGER.name)}</div>
+                <div style={{ ...miniPos, fontSize: "11px", padding: "2px 8px", bottom: "26px" }}>{MANAGER.position}</div>
+                <div style={{ ...miniNameBar, fontSize: "13px", padding: "5px 4px", letterSpacing: "1px" }}>{shortName(MANAGER.name)}</div>
               </div>
               {hovered === "mgr" && (
                 <div style={{
@@ -330,7 +339,7 @@ function PlayersList() {
                   right: "100%",
                   top: "50%",
                   transform: "translateY(-50%)",
-                  marginRight: "14px",
+                  marginRight: "16px",
                   zIndex: 50,
                   pointerEvents: "none",
                   animation: "fadeIn 0.2s ease",
