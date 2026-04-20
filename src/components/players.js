@@ -13,7 +13,7 @@ import neymarImg from "../assets/players/neymar.jpg";
 
 const players = [
   {
-    name: "Van der Sar",
+    name: "Van Der Sar",
     team: "Man United",
     nationality: "Netherlands",
     position: "GK",
@@ -133,7 +133,7 @@ const players = [
     x: 78, y: 22,
   },
   {
-    name: "Neymar Jr",
+    name: "Neymar",
     team: "Santos",
     nationality: "Brazil",
     position: "LW",

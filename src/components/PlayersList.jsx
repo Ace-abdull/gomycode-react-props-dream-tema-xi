@@ -306,11 +306,38 @@ function PlayersList() {
             })}
           </div>
 
-          {/* Coach card — same size as the rest */}
-          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
+          {/* Coach mini-card — matches the formation tokens */}
+          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px", paddingTop: "8px" }}>
             <div style={{ fontSize: "10px", letterSpacing: "4px", color: "#f9e79f", opacity: 0.7, textTransform: "uppercase" }}>Manager</div>
-            <div onClick={() => setSelected(MANAGER)}>
-              <Player {...MANAGER} />
+            <div
+              className="player-token"
+              style={{ position: "relative", cursor: "pointer" }}
+              onClick={() => setSelected(MANAGER)}
+              onMouseEnter={() => setHovered("mgr")}
+              onMouseLeave={() => setHovered(null)}
+            >
+              <div className="mini-card" style={miniCardStyle}>
+                <div style={miniRating}>{MANAGER.rating}</div>
+                <div style={miniImgWrap}>
+                  <img src={MANAGER.image} alt={MANAGER.name} style={miniImg} loading="lazy" />
+                </div>
+                <div style={miniPos}>{MANAGER.position}</div>
+                <div style={miniNameBar}>{shortName(MANAGER.name)}</div>
+              </div>
+              {hovered === "mgr" && (
+                <div style={{
+                  position: "absolute",
+                  right: "100%",
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  marginRight: "14px",
+                  zIndex: 50,
+                  pointerEvents: "none",
+                  animation: "fadeIn 0.2s ease",
+                }}>
+                  <Player {...MANAGER} size="sm" />
+                </div>
+              )}
             </div>
           </div>
         </div>
