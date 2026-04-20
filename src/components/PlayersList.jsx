@@ -3,6 +3,18 @@ import Player from "./Player";
 import players from "./players";
 import mourinhoImg from "../assets/players/mourinho.jpg";
 
+const MANAGER = {
+  name: "José Mourinho",
+  team: "Man United",
+  nationality: "Portugal",
+  position: "MGR",
+  jerseyNumber: 1,
+  age: 61,
+  rating: 99,
+  image: mourinhoImg,
+  captain: false,
+};
+
 function PlayersList() {
   const [selected, setSelected] = useState(null);
   const [hovered, setHovered] = useState(null);
@@ -105,7 +117,6 @@ function PlayersList() {
     flexDirection: "column",
     alignItems: "center",
     cursor: "pointer",
-    transition: "transform 0.3s",
     zIndex: 2,
   });
 
@@ -142,20 +153,23 @@ function PlayersList() {
     textShadow: "0 1px 2px rgba(255,255,255,0.6)",
     zIndex: 2,
   };
+  // Position tag — smaller, bottom-edge of card, above the name bar
   const miniPos = {
     position: "absolute",
-    top: "23px",
-    left: "5px",
+    bottom: "16px",
+    left: "50%",
+    transform: "translateX(-50%)",
     fontFamily: "'Oswald', sans-serif",
-    fontSize: "9px",
+    fontSize: "8px",
     fontWeight: 900,
     color: "#1a1205",
     background: "rgba(255,244,184,0.95)",
     padding: "1px 5px",
     borderRadius: "3px",
     letterSpacing: "0.5px",
-    zIndex: 2,
+    zIndex: 3,
     boxShadow: "0 1px 2px rgba(0,0,0,0.4)",
+    pointerEvents: "none",
   };
   const miniNameBar = {
     background: "rgba(26,18,5,0.9)",
@@ -213,11 +227,7 @@ function PlayersList() {
     justifyItems: "center",
   };
 
-  // Get last name for tag (or use first 2 names)
-  const shortName = (full) => {
-    const parts = full.split(" ");
-    return parts[parts.length - 1];
-  };
+  const shortName = (full) => full.split(" ").slice(-1)[0];
 
   return (
     <div style={wrapStyle}>
@@ -225,10 +235,10 @@ function PlayersList() {
         @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes slideUp { from { transform: translateY(40px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
         @keyframes pulseRing { 0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 0 rgba(255,140,0,0.7); } 50% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 8px rgba(255,140,0,0); } }
-        .player-token:hover { transform: translate(-50%, -50%) scale(1.15) !important; z-index: 30; }
+        .player-token { transition: opacity 0.2s, filter 0.2s, transform 0.3s; }
+        .player-token:hover { transform: translate(-50%, -50%) scale(1.12); z-index: 30; }
         .player-token.captain .mini-card { animation: pulseRing 2s infinite; border-color: #ff8c00 !important; }
-        .pitch-area.has-hover .player-token:not(.is-hovered) { opacity: 0.25; filter: blur(1px); }
-        .pitch-area .player-token { transition: opacity 0.2s, filter 0.2s, transform 0.3s; }
+        .pitch-area.has-hover .player-token:not(.is-hovered) { opacity: 0.2; filter: blur(1.5px); }
       `}</style>
 
       <header style={headerStyle}>
@@ -250,12 +260,11 @@ function PlayersList() {
             <PitchLines />
             {players.map((p, i) => {
               const isHovered = hovered === i;
-              // smart placement: top players → preview below; sides → opposite side
               const placeBelow = p.y < 30;
               const placeRight = p.x < 50;
               return (
                 <div
-                  key={i}
+                  key={p.name}
                   className={`player-token ${p.captain ? "captain" : ""} ${isHovered ? "is-hovered" : ""}`}
                   style={tokenStyle(p.x, p.y)}
                   onClick={() => setSelected(p)}
@@ -269,11 +278,11 @@ function PlayersList() {
                       : miniCardStyle.boxShadow,
                   }}>
                     <div style={miniRating}>{p.rating}</div>
-                    <div style={miniPos}>{p.position}</div>
                     {p.captain && <div style={captainTag}>C</div>}
                     <div style={miniImgWrap}>
                       <img src={p.image} alt={p.name} style={miniImg} loading="lazy" />
                     </div>
+                    <div style={miniPos}>{p.position}</div>
                     <div style={miniNameBar}>{shortName(p.name)}</div>
                   </div>
 
@@ -297,42 +306,26 @@ function PlayersList() {
             })}
           </div>
 
-          {/* Coach card — sits beside the pitch */}
-          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "10px" }}>
+          {/* Coach card — same size as the rest */}
+          <div style={{ flex: "0 0 auto", display: "flex", flexDirection: "column", alignItems: "center", gap: "12px" }}>
             <div style={{ fontSize: "10px", letterSpacing: "4px", color: "#f9e79f", opacity: 0.7, textTransform: "uppercase" }}>Manager</div>
-            <Player
-              name="José Mourinho"
-              team="Man United"
-              nationality="Portugal"
-              position="MGR"
-              jerseyNumber={1}
-              age={61}
-              rating={99}
-              image={mourinhoImg}
-              captain={false}
-              size="sm"
-            />
+            <div onClick={() => setSelected(MANAGER)}>
+              <Player {...MANAGER} />
+            </div>
           </div>
         </div>
       ) : (
         <div style={gridStyle}>
           {players.map((p, i) => (
-            <div key={i} style={{ animation: `slideUp 0.5s ease ${i * 0.05}s both` }}>
+            <div key={p.name} style={{ animation: `slideUp 0.5s ease ${i * 0.05}s both` }} onClick={() => setSelected(p)}>
               <Player {...p} />
             </div>
           ))}
-          <div style={{ animation: `slideUp 0.5s ease ${players.length * 0.05}s both` }}>
-            <Player
-              name="José Mourinho"
-              team="Man United"
-              nationality="Portugal"
-              position="MGR"
-              jerseyNumber={1}
-              age={61}
-              rating={99}
-              image={mourinhoImg}
-              captain={false}
-            />
+          <div
+            style={{ animation: `slideUp 0.5s ease ${players.length * 0.05}s both` }}
+            onClick={() => setSelected(MANAGER)}
+          >
+            <Player {...MANAGER} />
           </div>
         </div>
       )}

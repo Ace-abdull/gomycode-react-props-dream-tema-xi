@@ -9,7 +9,7 @@ import kakaImg from "../assets/players/kaka.jpg";
 import ozilImg from "../assets/players/ozil.webp";
 import cr7Img from "../assets/players/cr7.jpg";
 import messiImg from "../assets/players/messi.jpg";
-import berbatovImg from "../assets/players/berbatov.jpg";
+import neymarImg from "../assets/players/neymar.jpg";
 
 const players = [
   {
@@ -112,37 +112,37 @@ const players = [
     name: "Cristiano Ronaldo",
     team: "Man United",
     nationality: "Portugal",
-    position: "RW",
+    position: "ST",
     jerseyNumber: 7,
     age: 23,
     rating: 99,
     image: cr7Img,
     captain: false,
-    x: 78, y: 22,
+    x: 50, y: 12,
   },
   {
     name: "Lionel Messi",
     team: "Barcelona",
     nationality: "Argentina",
-    position: "LW",
+    position: "RW",
     jerseyNumber: 10,
     age: 24,
     rating: 99,
     image: messiImg,
     captain: false,
-    x: 22, y: 22,
+    x: 78, y: 22,
   },
   {
-    name: "Dimitar Berbatov",
-    team: "Man United",
-    nationality: "Bulgaria",
-    position: "ST",
-    jerseyNumber: 9,
-    age: 29,
+    name: "Neymar Jr",
+    team: "Santos",
+    nationality: "Brazil",
+    position: "LW",
+    jerseyNumber: 11,
+    age: 21,
     rating: 99,
-    image: berbatovImg,
+    image: neymarImg,
     captain: false,
-    x: 50, y: 12,
+    x: 22, y: 22,
   },
 ];
 
