@@ -235,10 +235,16 @@ function PlayersList() {
         @keyframes fadeIn { from { opacity: 0 } to { opacity: 1 } }
         @keyframes slideUp { from { transform: translateY(40px); opacity: 0 } to { transform: translateY(0); opacity: 1 } }
         @keyframes pulseRing { 0%, 100% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 0 rgba(255,140,0,0.7); } 50% { box-shadow: 0 6px 16px rgba(0,0,0,0.6), 0 0 0 8px rgba(255,140,0,0); } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
         .player-token { transition: opacity 0.2s, filter 0.2s, transform 0.3s; }
         .player-token:hover { transform: translate(-50%, -50%) scale(1.12); z-index: 30; }
         .player-token.captain .mini-card { animation: pulseRing 2s infinite; border-color: #ff8c00 !important; }
         .pitch-area.has-hover .player-token:not(.is-hovered) { opacity: 0.2; filter: blur(1.5px); }
+        .tab-btn { position: relative; overflow: hidden; }
+        .tab-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(245,215,110,0.35); letter-spacing: 3px; }
+        .tab-btn:active { transform: translateY(0); }
+        .tab-btn::after { content: ""; position: absolute; inset: 0; background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.4) 50%, transparent 70%); background-size: 200% 100%; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+        .tab-btn:hover::after { opacity: 1; animation: shimmer 1.2s linear infinite; }
       `}</style>
 
       <header style={headerStyle}>
@@ -247,13 +253,13 @@ function PlayersList() {
       </header>
 
       <div style={toggleWrap}>
-        <button style={tabBtn(view === "pitch")} onClick={() => setView("pitch")}>Formation</button>
-        <button style={tabBtn(view === "cards")} onClick={() => setView("cards")}>Cards</button>
+        <button className="tab-btn" style={tabBtn(view === "pitch")} onClick={() => setView("pitch")}>Formation</button>
+        <button className="tab-btn" style={tabBtn(view === "cards")} onClick={() => setView("cards")}>Cards</button>
       </div>
 
       {view === "pitch" ? (
         <div style={{
-          display: "flex", gap: "32px", justifyContent: "center", alignItems: "flex-start",
+          display: "flex", gap: "12px", justifyContent: "center", alignItems: "flex-start",
           flexWrap: "wrap", maxWidth: "1100px", margin: "0 auto",
         }}>
           <div className={`pitch-area ${hovered !== null ? "has-hover" : ""}`} style={{ ...pitchWrapStyle, flex: "0 1 640px" }}>
