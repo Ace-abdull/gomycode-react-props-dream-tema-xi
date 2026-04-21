@@ -1,15 +1,15 @@
 // Premium FIFA-style player card — rectangular with full visible photo
 function Player({
-  name,
-  team,
-  nationality,
-  position,
-  jerseyNumber,
-  age,
-  rating,
+  name = "Unknown Player",
+  team = "Free Agent",
+  nationality = "Unknown",
+  position = "ST",
+  jerseyNumber = 0,
+  age = 0,
+  rating = 75,
   image,
-  captain,
-  size,
+  captain = false,
+  size = "lg",
 }) {
   const scale = size === "sm" ? 0.55 : 1;
   const W = 300 * scale;
@@ -189,18 +189,5 @@ function Player({
     </div>
   );
 }
-
-Player.defaultProps = {
-  name: "Unknown Player",
-  team: "Free Agent",
-  nationality: "Unknown",
-  position: "ST",
-  jerseyNumber: 0,
-  age: 0,
-  rating: 75,
-  image: "https://via.placeholder.com/300x460?text=Player",
-  captain: false,
-  size: "lg",
-};
 
 export default Player;
