@@ -22,7 +22,8 @@ const players = [
     rating: 99,
     image: vanDerSarImg,
     captain: false,
-    x: 50, y: 88,
+    x: 50,
+    y: 88,
   },
   {
     name: "Roberto Carlos",
@@ -34,7 +35,8 @@ const players = [
     rating: 99,
     image: robertoCarlosImg,
     captain: false,
-    x: 82, y: 70,
+    x: 82,
+    y: 70,
   },
   {
     name: "Fabio Cannavaro",
@@ -46,7 +48,8 @@ const players = [
     rating: 99,
     image: cannavaroImg,
     captain: false,
-    x: 60, y: 73,
+    x: 60,
+    y: 73,
   },
   {
     name: "Paolo Maldini",
@@ -58,7 +61,8 @@ const players = [
     rating: 99,
     image: maldiniImg,
     captain: true,
-    x: 40, y: 73,
+    x: 40,
+    y: 73,
   },
   {
     name: "Marcelo",
@@ -70,7 +74,8 @@ const players = [
     rating: 99,
     image: marceloImg,
     captain: false,
-    x: 18, y: 70,
+    x: 18,
+    y: 70,
   },
   {
     name: "Roy Keane",
@@ -82,7 +87,8 @@ const players = [
     rating: 99,
     image: keaneImg,
     captain: false,
-    x: 50, y: 53,
+    x: 50,
+    y: 53,
   },
   {
     name: "Ricardo Kaká",
@@ -94,7 +100,8 @@ const players = [
     rating: 99,
     image: kakaImg,
     captain: false,
-    x: 72, y: 45,
+    x: 72,
+    y: 45,
   },
   {
     name: "Mesut Özil",
@@ -106,7 +113,8 @@ const players = [
     rating: 99,
     image: ozilImg,
     captain: false,
-    x: 28, y: 45,
+    x: 28,
+    y: 45,
   },
   {
     name: "Cristiano Ronaldo",
@@ -118,7 +126,8 @@ const players = [
     rating: 99,
     image: cr7Img,
     captain: false,
-    x: 50, y: 12,
+    x: 50,
+    y: 12,
   },
   {
     name: "Lionel Messi",
@@ -130,7 +139,8 @@ const players = [
     rating: 99,
     image: messiImg,
     captain: false,
-    x: 78, y: 22,
+    x: 78,
+    y: 22,
   },
   {
     name: "Neymar",
@@ -142,7 +152,8 @@ const players = [
     rating: 99,
     image: neymarImg,
     captain: false,
-    x: 22, y: 22,
+    x: 22,
+    y: 22,
   },
 ];
 
