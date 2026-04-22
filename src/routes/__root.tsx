@@ -33,7 +33,10 @@ export const Route = createRootRoute({
       { name: "description", content: "Stable TanStack Start app shell for local development." },
       { name: "author", content: "Lovable" },
       { property: "og:title", content: "Football Team Project" },
-      { property: "og:description", content: "Stable TanStack Start app shell for local development." },
+      {
+        property: "og:description",
+        content: "Stable TanStack Start app shell for local development.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
