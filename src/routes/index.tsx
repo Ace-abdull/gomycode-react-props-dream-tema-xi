@@ -63,9 +63,9 @@ function Index() {
                 development.
               </h2>
               <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-7">
-                This page is intentionally lean so the project boots reliably first. Once local dev is
-                stable, you can layer back richer football visuals without fighting broken startup
-                config.
+                This page is intentionally lean so the project boots reliably first. Once local dev
+                is stable, you can layer back richer football visuals without fighting broken
+                startup config.
               </p>
             </div>
 
