@@ -59,11 +59,13 @@ function Index() {
                 Reset to stable
               </p>
               <h2 className="mt-3 max-w-2xl text-3xl font-bold text-foreground sm:text-4xl">
-                Minimal home screen, clean router shell, and safe defaults for local npm development.
+                Minimal home screen, clean router shell, and safe defaults for local npm
+                development.
               </h2>
               <p className="text-muted-foreground mt-4 max-w-2xl text-base leading-7">
                 This page is intentionally lean so the project boots reliably first. Once local dev is
-                stable, you can layer back richer football visuals without fighting broken startup config.
+                stable, you can layer back richer football visuals without fighting broken startup
+                config.
               </p>
             </div>
 
