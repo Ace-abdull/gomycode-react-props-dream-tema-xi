@@ -2,6 +2,10 @@ import { createFileRoute } from "@tanstack/react-router";
 import { memo } from "react";
 import App from "@/App";
 
+const Index = memo(function Index() {
+  return <App />;
+});
+
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -35,8 +39,4 @@ export const Route = createFileRoute("/")({
     ],
   }),
   component: Index,
-});
-
-const Index = memo(function Index() {
-  return <App />;
 });
