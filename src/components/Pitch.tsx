@@ -40,9 +40,5 @@ export function Pitch({ children }: { children: ReactNode }) {
 }
 
 export function PitchRow({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex items-center justify-around px-2 sm:px-4">
-      {children}
-    </div>
-  );
+  return <div className="flex items-center justify-around px-2 sm:px-4">{children}</div>;
 }
