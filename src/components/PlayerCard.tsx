@@ -18,9 +18,7 @@ export function PlayerCard({ name, rating, position, nation, club, image }: Play
           <span className="text-shadow-soft text-[10px] font-bold tracking-widest text-gold-foreground/80">
             {position}
           </span>
-          <span className="mt-1 text-[10px] font-semibold text-gold-foreground/70">
-            {nation}
-          </span>
+          <span className="mt-1 text-[10px] font-semibold text-gold-foreground/70">{nation}</span>
           <span className="text-[10px] font-semibold text-gold-foreground/70">{club}</span>
         </div>
 

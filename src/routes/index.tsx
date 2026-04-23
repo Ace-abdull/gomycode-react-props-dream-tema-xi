@@ -34,7 +34,14 @@ const goalkeeper: Player = {
 };
 
 const defenders: Player[] = [
-  { name: "R. Carlos", rating: 91, position: "LB", nation: "BRA", club: "RMA", image: robertoCarlos },
+  {
+    name: "R. Carlos",
+    rating: 91,
+    position: "LB",
+    nation: "BRA",
+    club: "RMA",
+    image: robertoCarlos,
+  },
   { name: "Maldini", rating: 94, position: "CB", nation: "ITA", club: "MIL", image: maldini },
   { name: "Cannavaro", rating: 92, position: "CB", nation: "ITA", club: "RMA", image: cannavaro },
   { name: "Marcelo", rating: 88, position: "RB", nation: "BRA", club: "RMA", image: marcelo },
@@ -64,8 +71,7 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: "Dream XI — Football Team Project" },
       {
         property: "og:description",
-        content:
-          "A FIFA-style dream XI lineup of football legends arranged in a 4-3-3 formation.",
+        content: "A FIFA-style dream XI lineup of football legends arranged in a 4-3-3 formation.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -87,8 +93,8 @@ function Index() {
               Dream XI <span className="text-accent">·</span> 4-3-3
             </h1>
             <p className="mt-3 max-w-xl text-sm leading-6 text-muted-foreground">
-              A timeless lineup of legends. Tap a card to feel the chemistry —
-              built FIFA-style on a real stadium pitch.
+              A timeless lineup of legends. Tap a card to feel the chemistry — built FIFA-style on a
+              real stadium pitch.
             </p>
           </div>
 
@@ -133,13 +139,11 @@ function Index() {
           {/* Squad info */}
           <aside className="space-y-5">
             <div className="rounded-2xl border border-border bg-card/70 p-6 shadow-card backdrop-blur">
-              <p className="text-xs font-bold uppercase tracking-widest text-accent">
-                Formation
-              </p>
+              <p className="text-xs font-bold uppercase tracking-widest text-accent">Formation</p>
               <p className="mt-1 text-3xl font-black text-foreground">4-3-3 Attack</p>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                High press, inverted full-backs, and a creative trio behind a
-                clinical front three. Built for fluid, vertical football.
+                High press, inverted full-backs, and a creative trio behind a clinical front three.
+                Built for fluid, vertical football.
               </p>
             </div>
 
@@ -162,13 +166,11 @@ function Index() {
             </div>
 
             <div className="rounded-2xl border border-border bg-card/70 p-6 shadow-card backdrop-blur">
-              <p className="text-xs font-bold uppercase tracking-widest text-accent">
-                Captain
-              </p>
+              <p className="text-xs font-bold uppercase tracking-widest text-accent">Captain</p>
               <p className="mt-1 text-2xl font-black text-foreground">Paolo Maldini</p>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                The benchmark for defensive elegance. Reads the game two moves
-                ahead and keeps the back line composed under any pressure.
+                The benchmark for defensive elegance. Reads the game two moves ahead and keeps the
+                back line composed under any pressure.
               </p>
             </div>
           </aside>
