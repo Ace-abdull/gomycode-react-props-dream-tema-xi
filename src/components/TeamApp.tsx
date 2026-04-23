@@ -64,7 +64,9 @@ export default function TeamApp() {
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
         <header className="flex flex-col gap-6 border-b border-border pb-8 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary">Matchday Squad</p>
+            <p className="text-xs font-bold uppercase tracking-[0.3em] text-primary">
+              Matchday Squad
+            </p>
             <h1 className="mt-2 text-4xl font-black tracking-tight text-foreground sm:text-5xl lg:text-6xl">
               Dream XI <span className="text-accent">·</span> 4-3-3
             </h1>
@@ -80,7 +82,9 @@ export default function TeamApp() {
               className="h-12 w-12 rounded-full object-cover ring-2 ring-accent"
             />
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Manager</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">
+                Manager
+              </p>
               <p className="text-lg font-bold text-foreground">José Mourinho</p>
             </div>
           </div>
@@ -113,7 +117,8 @@ export default function TeamApp() {
               <p className="text-xs font-bold uppercase tracking-widest text-accent">Formation</p>
               <p className="mt-1 text-3xl font-black text-foreground">4-3-3 Attack</p>
               <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                High press, inverted full-backs, creative midfield control, and a clinical front three.
+                High press, inverted full-backs, creative midfield control, and a clinical front
+                three.
               </p>
             </div>
 
@@ -139,7 +144,8 @@ export default function TeamApp() {
               <p className="text-xs font-bold uppercase tracking-widest text-accent">Captain</p>
               <p className="mt-1 text-2xl font-black text-foreground">Paolo Maldini</p>
               <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                Defensive elegance, elite reading of the game, and complete control of the back line.
+                Defensive elegance, elite reading of the game, and complete control of the back
+                line.
               </p>
             </div>
           </aside>
